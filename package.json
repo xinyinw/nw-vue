@@ -14,7 +14,7 @@
     "muse-ui": "^3.0.0",
     "muse-ui-message": "^0.2.0",
     "node-webkit-updater": "^0.3.3",
-    "nw": "0.14.7-sdk",
+    "nw": "0.n.7-sdk",
     "vue": "^2.2.2",
     "vue-router": "^2.2.0"
   },
