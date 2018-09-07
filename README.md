@@ -1,4 +1,4 @@
-# vue-nw-seed
+# vue-nw
 
 > A seed project with Vue.js and Nw.js
 
