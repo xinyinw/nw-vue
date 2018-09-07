@@ -38,12 +38,12 @@ module.exports = {
       // manifest for nw
       // the fileds will merge with `./package.json` and build to `./dist/package.json` for NW.js
       // Manifest Format: http://docs.nwjs.io/en/latest/References/Manifest%20Format/
-      manifest: ['name', 'appName', 'version', 'description', 'author', { main: './index.html' }, 'manifestUrl', 'window', 'nodejs', 'js-flags', 'node-remote'],
+      manifest: ['name', 'appName', 'version', 'description', 'author', {main: './index.html'}, 'manifestUrl', 'startjsUrl', 'endjsUrl', 'window', 'nodejs', 'js-flags', 'node-remote'],
       // see document: https://github.com/nwjs/nw-builder
       builder: {
         files: [resolve('./dist/**')],
         // platforms: ['win32', 'win64', 'osx64'],
-        platforms: ['win32', 'win64','osx64'],
+        platforms: ['win32', 'win64', 'osx64'],
         version: '0.14.7',
         flavor: 'normal',
         cacheDir: resolve('./node_modules/_nw-builder-cache/'),
