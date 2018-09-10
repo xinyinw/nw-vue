@@ -14,14 +14,17 @@
         </mu-auto-complete>
       </div>
       <div class="chat-window-title">
-        <mu-appbar style="width: 100%;" title="Title">
-
+        <mu-appbar style="width: 100%;">
+          <mu-avatar slot="left">
+            <img :src="nowChatView.headimg"/>
+          </mu-avatar>
+          {{nowChatView.title}}
         </mu-appbar>
       </div>
     </div>
     <div class="chat-lastlist">
       <mu-list textline="two-line" :value="lastListValue">
-        <mu-list-item avatar button :ripple="true" @click="selectChat(item.id)" v-for="item in lastdata" :key="item.id"
+        <mu-list-item avatar button :ripple="true" @click="selectChat(item)" v-for="item in lastdata" :key="item.id"
                       :value="item.id">
           <mu-list-item-action>
             <mu-avatar>
@@ -41,6 +44,28 @@
     <div class="chat-content">
 
     </div>
+    <div class="chat-putview">
+      <div class="chat-putview-tools">
+        <mu-button flat>
+          <mu-icon value="insert_emoticon"></mu-icon>
+        </mu-button>
+        <mu-button flat>
+          <mu-icon value="photo"></mu-icon>
+        </mu-button>
+        <mu-button flat>
+          <mu-icon value="folder_open"></mu-icon>
+        </mu-button>
+        <mu-button flat>
+          <mu-icon value="code"></mu-icon>
+        </mu-button>
+        <div class="chat-putview-tools-right">
+          <mu-button flat>
+            <mu-icon value="access_time" left></mu-icon>
+            历史消息
+          </mu-button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -52,27 +77,45 @@
         fruits: [],
         searchValue: '',
         lastListValue: 'test',
+        nowChatView: {
+          id: 'test',
+          headimg: 'https://cn.vuejs.org/images/logo.png',
+          title: '小一',
+          desc: '来了吗',
+          lasttime: '2018-01-09 11:11:22'
+        },
         lastdata: [
           {
             id: 'test',
             headimg: 'https://cn.vuejs.org/images/logo.png',
             title: '小一',
             desc: '来了吗',
+            type: 'friend',
             lasttime: '2018-01-09 11:11:22'
           },
           {
             id: 'test2',
-            headimg: 'https://cn.vuejs.org/images/logo.png',
+            headimg: 'https://muse-ui.org/img/uicon.ac3913bf.jpg',
             title: '小二',
             desc: '来了',
+            type: 'friend',
+            lasttime: '2018-01-09 11:11:22'
+          },
+          {
+            id: 'test3',
+            headimg: 'https://www.easyicon.net/api/resizeApi.php?id=1175790&size=128',
+            title: '群组',
+            desc: '小二:来了',
+            type: 'group',
             lasttime: '2018-01-09 11:11:22'
           }
         ]
       };
     },
     methods: {
-      selectChat(id) {
-        this.lastListValue = id;
+      selectChat(chatdata) {
+        this.lastListValue = chatdata.id;
+        this.nowChatView = chatdata;
       }
     }
   }
@@ -85,6 +128,11 @@
   .chat-lastlist {
     .mu-item.is-selected {
       background: rgba(0, 0, 0, .1);
+    }
+  }
+  .chat-putview-tools {
+    .mu-flat-button .mu-button-wrapper {
+      padding: 0 6px;
     }
   }
 </style>

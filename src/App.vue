@@ -5,14 +5,44 @@
         <mu-avatar color="red">
           L
         </mu-avatar>
-        <mu-button icon v-for="nav in leftNav" :key="nav.id" :class="getLeftNavClass(nav.id)"
-                   @click="toggleLeftNav(nav.id)">
-          <mu-icon :value="nav.icon"></mu-icon>
-        </mu-button>
-        <div class="window-left-bottom">
-          <mu-button icon>
-            <mu-icon size="18" value="add"></mu-icon>
+        <mu-tooltip placement="right" :content="nav.title" v-for="nav in leftNav" :key="nav.id">
+          <mu-button icon :class="getLeftNavClass(nav.id)"
+                     @click="toggleLeftNav(nav.id)">
+            <mu-icon :value="nav.icon"></mu-icon>
           </mu-button>
+        </mu-tooltip>
+        <div class="window-left-bottom">
+          <mu-menu placement="right-end" :open.sync="openAddMenu">
+            <mu-button icon>
+              <mu-icon size="18" value="add"></mu-icon>
+            </mu-button>
+            <mu-list slot="content">
+              <mu-list-item button>
+                <mu-list-item-action class="mu-item-action-icon">
+                  <mu-icon value="person_add"></mu-icon>
+                </mu-list-item-action>
+                <mu-list-item-title>添加好友</mu-list-item-title>
+              </mu-list-item>
+              <mu-list-item button>
+                <mu-list-item-action class="mu-item-action-icon">
+                  <mu-icon value="group_add"></mu-icon>
+                </mu-list-item-action>
+                <mu-list-item-title>创建群</mu-list-item-title>
+              </mu-list-item>
+              <mu-list-item button>
+                <mu-list-item-action class="mu-item-action-icon">
+                  <mu-icon value="location_city"></mu-icon>
+                </mu-list-item-action>
+                <mu-list-item-title>创建企业</mu-list-item-title>
+              </mu-list-item>
+              <mu-list-item button>
+                <mu-list-item-action class="mu-item-action-icon">
+                  <mu-icon value="library_add"></mu-icon>
+                </mu-list-item-action>
+                <mu-list-item-title>加入企业</mu-list-item-title>
+              </mu-list-item>
+            </mu-list>
+          </mu-menu>
           <mu-button icon>
             <mu-icon size="18" value="star_border"></mu-icon>
           </mu-button>
@@ -44,18 +74,22 @@
     components: {MainChat, MainApps, MainNews},
     data() {
       return {
+        openAddMenu: false,
         leftNavActiveed: 'chat',
         leftNav: [
           {
             id: 'chat',
+            title: '消息',
             icon: 'chat'
           },
           {
             id: 'apps',
+            title: '企业应用',
             icon: 'apps'
           },
           {
             id: 'news',
+            title: '靠谱新闻',
             icon: 'fiber_new'
           }
         ]
