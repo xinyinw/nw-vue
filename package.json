@@ -86,7 +86,7 @@
     "min_width": 1024,
     "min_height": 600,
     "resizable": true,
-    "frame": true,
+    "frame": false,
     "kiosk": false,
     "icon": "/static/logo.png",
     "show_in_taskbar": true

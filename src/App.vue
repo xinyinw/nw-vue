@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="window-layout">
-      <div class="window-left-nav">
+      <div class="window-left-nav xy-drag">
         <mu-avatar color="red">
           L
         </mu-avatar>
@@ -11,15 +11,20 @@
         </mu-button>
         <div class="window-left-bottom">
           <mu-button icon>
-            <mu-icon size="18" value="apps"></mu-icon>
+            <mu-icon size="18" value="add"></mu-icon>
           </mu-button>
           <mu-button icon>
-            <mu-icon size="18" value="fiber_new"></mu-icon>
+            <mu-icon size="18" value="star_border"></mu-icon>
+          </mu-button>
+          <mu-button icon>
+            <mu-icon size="18" value="settings"></mu-icon>
           </mu-button>
         </div>
       </div>
       <div class="window-content">
-        <router-view></router-view>
+        <keep-alive>
+          <component v-bind:is="currentTabComponent"></component>
+        </keep-alive>
       </div>
     </div>
     <div class="window-tools">
@@ -30,28 +35,36 @@
   </div>
 </template>
 <script>
+  import MainChat from './components/main/chat'
+  import MainApps from './components/main/apps'
+  import MainNews from './components/main/news'
+
   export default {
     name: 'app',
+    components: {MainChat, MainApps, MainNews},
     data() {
       return {
         leftNavActiveed: 'chat',
         leftNav: [
           {
             id: 'chat',
-            icon: 'chat',
-            com: 'chat'
+            icon: 'chat'
           },
           {
             id: 'apps',
-            icon: 'apps',
-            com: 'apps'
+            icon: 'apps'
           },
           {
-            id: 'fiber_new',
-            icon: 'fiber_new',
-            com: 'fiber_new'
+            id: 'news',
+            icon: 'fiber_new'
           }
         ]
+      }
+    },
+    computed: {
+      currentTabComponent: function () {
+        console.log(this.leftNavActiveed)
+        return 'main-' + this.leftNavActiveed.toLowerCase()
       }
     },
     methods: {
@@ -75,5 +88,6 @@
 </script>
 
 <style lang="less">
+  @import "less/app";
   @import "less/window";
 </style>

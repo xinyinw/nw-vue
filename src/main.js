@@ -2,7 +2,6 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import router from './router'
 import MuseUi from 'muse-ui'
 import MuseUimMessage from 'muse-ui-message'
 import 'muse-ui/dist/muse-ui.css'
@@ -16,15 +15,14 @@ Vue.use(Toast)
 Vue.use(MuseUi)
 Vue.use(MuseUimMessage)
 theme.use('dark')
-// for auto update
-import {checkUpdate} from '@/utils/update.js'
 
-checkUpdate()
+// for auto update
+// import {checkUpdate} from '@/utils/update.js'
+// checkUpdate()
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router,
   template: '<App/>',
   components: {App}
 })
